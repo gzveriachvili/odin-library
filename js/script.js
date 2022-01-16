@@ -9,6 +9,14 @@
 //  1. Does your program have a user interface?
 //  What will it look like? What functionality will the interface have? Sketch this out on paper.
 
+const addButton = document.querySelector('.add-book-symbol');
+addButton.addEventListener('mouseover', () => {
+  addButton.classList.toggle('add-over');
+});
+addButton.addEventListener('mouseout', () => {
+  addButton.classList.toggle('add-over');
+});
+
 let myLibrary = [];
 
 function Book(title, author, pages, read) {

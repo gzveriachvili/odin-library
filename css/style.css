@@ -1,17 +1,250 @@
 /* Colors */
-/* #617596
+/* #617596 border color
 #CAF0FF
-#F9FAFE
-#E6EBFE
+#F9FAFE card bg
+#E6EBFE card section bg
+#E4F0F8 body bg
 #4548A1
 #FC6490 */
+
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Londrina+Outline&family=Nunito:wght@200;300;500;800;900&family=Pacifico&display=swap');
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #fc6490;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 30px;
+  border-radius: 30px;
+  background: #4548a1;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  height: 100%;
 }
 
 body {
-  background-color: red;
+  background-color: #e4f0f8;
+  background-image: url(../img/basebackground.png);
+  background-size: cover;
+  background-position: top;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px;
+}
+
+.content-section {
+  background: rgba(249, 250, 254, 0.164);
+  border-radius: 30px;
+
+  -webkit-box-shadow: 0px 1px 13px 6px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 1px 13px 6px rgba(0, 0, 0, 0.4);
+  min-width: 95%;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.header {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  background: #4548a1;
+  border-radius: 15px;
+  max-width: 90%;
+  min-width: 90%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
+  max-width: 80%;
+}
+
+.logo {
+  color: #e9f2fa;
+  font-size: 55px;
+  margin-top: 2px;
+  margin-right: 5%;
+}
+
+.logo-text-main {
+  color: #f9fafe;
+  font-size: 30px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  line-height: 33px;
+}
+
+.logo-text-secondary {
+  background: #caf0ff;
+  color: #4548a1;
+  font-family: 'Gochi Hand', cursive;
+  font-size: 20px;
+  border-radius: 6px;
+}
+
+.text {
+  margin-right: 5%;
+}
+
+.search {
+  margin-right: 5%;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-input {
+  width: 560px;
+  padding: 5px;
+  border: 5px solid #4548a1;
+  background: #f9fafe;
+  border-radius: 50px 0 0 50px;
+  border-right: none;
+  outline: none;
+  font-size: 20px;
+  color: #4548a1;
+}
+.search-button {
+  outline: none;
+  padding: 5px;
+  cursor: pointer;
+  border: 5px solid #4548a1;
+  border-radius: 0 50px 50px 0;
+  border-left: none;
+  background: #f9fafe;
+  font-size: 20px;
+  color: #4548a1;
+}
+
+.search-button:hover {
+  color: #fc6490;
+}
+
+.add-book-symbol {
+  color: #f77ba3;
+  font-size: 60px;
+
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  transition: 0.5s;
+  transform-origin: center;
+}
+
+.add {
+  margin-right: 5%;
+}
+
+.add-over {
+  transform: rotate(45deg);
+  color: #caf0ff;
+}
+
+.add-book-symbol:hover {
+  cursor: pointer;
+}
+
+.user-profile {
+  margin-top: 3px;
+  color: #f9fafe;
+  font-size: 50px;
+}
+
+.books-area {
+  max-width: 90%;
+  min-width: 90%;
+  padding: 0px 0px 15px 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: auto;
+  justify-content: center;
+}
+
+.card {
+  background: #f9fafe;
+  border-radius: 10px;
+  height: 250px;
+  width: auto;
+  margin: 15px 15px 35px 15px;
+  -webkit-box-shadow: 1px 1px 15px 4px rgba(0, 0, 0, 0.247);
+  box-shadow: 1px 1px 15px 4px rgba(0, 0, 0, 0.24);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: 'Nunito', sans-serif;
+  flex-shrink: 1;
+}
+
+.card-top {
+  display: flex;
+  border-radius: 10px 10px 0px 0px;
+  background: #4548a1;
+  justify-content: center;
+  height: auto;
+  padding: 5px;
+  width: 100%;
+}
+
+.card-title {
+  margin-top: 5px;
+  margin-left: 4px;
+  color: #f9fafe;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.card-delete {
+  margin-left: 10px;
+  font-weight: 900;
+  color: #f77ba3;
+}
+
+.card-delete:hover {
+  cursor: pointer;
+  color: #ff4949;
+}
+
+.card-author,
+.card-pages,
+.card-isread {
+  width: 100%;
+  height: auto;
+  font-size: 20px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.card-pages {
+  border-top: 3px dotted #4548a1;
+  border-bottom: 3px dotted #4548a1;
 }
