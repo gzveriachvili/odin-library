@@ -1,0 +1,17 @@
+/* Colors */
+/* #617596
+#CAF0FF
+#F9FAFE
+#E6EBFE
+#4548A1
+#FC6490 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: red;
+}
