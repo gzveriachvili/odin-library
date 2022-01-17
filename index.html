@@ -45,7 +45,55 @@
           </div>
           <div class="card-author">James Clavell</div>
           <div class="card-pages">500 pages</div>
-          <div class="card-isread">Not read yet</div>
+          <div class="card-bottom">
+            <div class="card-isread">Not read</div>
+            <div class="card-toggle">
+              <label class="switch">
+                <input type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="libraryModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>Add new book</h1>
+          <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div class="input-area">
+            <div class="title-input">
+              <label for="title">Title: </label>
+              <input type="text" id="title" name="input-title" />
+            </div>
+
+            <div class="author-input">
+              <label for="author">Author: </label>
+              <input type="text" id="author" name="input-author" />
+            </div>
+
+            <div class="pages-input">
+              <label for="pages">Pages: </label>
+              <input type="number" id="pages" name="input-pages" />
+            </div>
+
+            <div class="isread-input">
+              <div class="isread-input-text">Read:</div>
+              <label class="switch bigger-switch">
+                <input type="checkbox" />
+                <span class="slider round bigger-slider"></span>
+              </label>
+            </div>
+
+            <div class="submit-button">
+              <button class="btn-submit-book">submit</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

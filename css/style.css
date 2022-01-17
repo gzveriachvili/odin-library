@@ -14,7 +14,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #fc6490;
+  background-color: #caf0ff;
   -webkit-border-radius: 10px;
   border-radius: 10px;
   margin-top: 15px;
@@ -231,8 +231,7 @@ body {
 }
 
 .card-author,
-.card-pages,
-.card-isread {
+.card-pages {
   width: 100%;
   height: auto;
   font-size: 20px;
@@ -246,5 +245,231 @@ body {
 
 .card-pages {
   border-top: 3px dotted #4548a1;
-  border-bottom: 3px dotted #4548a1;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: center;
+  background: #ff4949;
+  column-gap: 16px;
+  height: auto;
+  padding: 5px;
+  width: 100%;
+}
+
+.card-isread {
+  color: #f9fafe;
+  font-weight: 700;
+}
+
+.card-toggle,
+.card-isread {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 14px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(155, 155, 155);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 6px;
+  width: 6px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.bigger-switch {
+  height: 30px;
+  width: 80px;
+  margin-right: 170px;
+}
+
+.bigger-slider:before {
+  height: 18px;
+  width: 18px;
+  bottom: 6px;
+}
+
+input:checked + .slider {
+  background-color: #1545e2;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+input:checked + .bigger-slider:before {
+  -webkit-transform: translateX(50px);
+  -ms-transform: translateX(50px);
+  transform: translateX(50px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.541);
+
+  font-family: 'Nunito', sans-serif;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  width: 40%;
+  height: 53%;
+  animation-name: animatetop;
+  animation-duration: 0.7s;
+}
+
+@keyframes animatetop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.close {
+  color: #fff;
+  float: right;
+  font-size: 28px;
+  font-weight: 900;
+  margin-left: auto;
+}
+
+.close:hover,
+.close:focus {
+  color: #ff4949;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  background: #4548a1;
+  height: auto;
+  padding: 8px 15px 8px 15px;
+}
+
+.modal-header h1 {
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.modal-body {
+  padding: 2px 16px;
+}
+
+.input-area {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  padding: 20px;
+  align-items: center;
+}
+
+.title-input,
+.author-input,
+.pages-input,
+.isread-input,
+.submit-button {
+  width: 70%;
+  font-size: 25px;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-family: 'Gochi Hand', cursive;
+  color: #202266;
+}
+
+#title,
+#author,
+#pages {
+  height: 25px;
+  width: 250px;
+  border-radius: 6px;
+  border: 3px solid #617596;
+}
+
+#title:focus,
+#author:focus,
+#pages:focus {
+  outline: none !important;
+  border: 3px solid #ff4949;
+}
+
+.btn-submit-book {
+  text-decoration: none;
+  border: none;
+  width: 100%;
+  height: 40px;
+  background: #ff4949;
+  color: #fefefe;
+  border-radius: 6px;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 300;
+}
+
+.btn-submit-book:hover {
+  cursor: pointer;
+  background: #ff5555;
 }

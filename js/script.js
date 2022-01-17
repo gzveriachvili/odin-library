@@ -17,6 +17,24 @@ addButton.addEventListener('mouseout', () => {
   addButton.classList.toggle('add-over');
 });
 
+const modal = document.querySelector('#libraryModal');
+
+const span = document.querySelector('.close');
+
+addButton.addEventListener('click', () => {
+  modal.setAttribute('style', 'display:block');
+});
+
+span.addEventListener('click', () => {
+  modal.setAttribute('style', 'display:none');
+});
+
+window.addEventListener('click', (e) => {
+  if (e.target == modal) {
+    modal.setAttribute('style', 'display:none');
+  }
+});
+
 let myLibrary = [];
 
 function Book(title, author, pages, read) {
