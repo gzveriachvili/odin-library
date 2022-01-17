@@ -10,6 +10,9 @@
 //  What will it look like? What functionality will the interface have? Sketch this out on paper.
 
 const addButton = document.querySelector('.add-book-symbol');
+const deleteBtn = document.querySelector('.card-delete');
+const shelf = document.querySelector('.books-area');
+
 addButton.addEventListener('mouseover', () => {
   addButton.classList.toggle('add-over');
 });
@@ -35,8 +38,6 @@ window.addEventListener('click', (e) => {
   }
 });
 
-let myLibrary = [];
-
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -44,4 +45,116 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-function addBookToLibrary() {}
+function addBookToLibrary(title, author, pages, read) {
+  let newBook = new Book();
+  newBook.title = title;
+  newBook.author = author;
+  newBook.pages = pages;
+  newBook.read = read;
+  myLibrary.push(newBook);
+}
+
+function displayBooks() {
+  for (const book of myLibrary) {
+    updateLibrary(book.title, book.author, book.pages, book.read);
+  }
+}
+
+function updateLibrary(title, author, pages, read) {
+  let card = document.createElement('div');
+  card.classList.add('card');
+  shelf.appendChild(card);
+  let cardTop = document.createElement('div');
+
+  cardTop.classList.add('card-top');
+  card.appendChild(cardTop);
+  let cardTitle = document.createElement('div');
+
+  cardTitle.classList.add('card-title');
+  cardTitle.textContent = title;
+  cardTop.appendChild(cardTitle);
+  let cardDelete = document.createElement('div');
+
+  cardDelete.classList.add('card-delete');
+  cardDelete.textContent = 'X';
+  cardTop.appendChild(cardDelete);
+  let cardAuthor = document.createElement('div');
+
+  cardAuthor.classList.add('card-author');
+  cardAuthor.textContent = author;
+  card.appendChild(cardAuthor);
+  let cardPages = document.createElement('div');
+
+  cardPages.classList.add('card-pages');
+  cardPages.textContent = pages;
+  card.appendChild(cardPages);
+  let cardBottom = document.createElement('div');
+
+  cardBottom.classList.add('card-bottom');
+  card.appendChild(cardBottom);
+  let cardIsRead = document.createElement('div');
+  cardIsRead.classList.add('card-isread');
+
+  function convertRead(readit) {
+    let newText = '';
+    if (readit) {
+      newText = 'Read it';
+    } else {
+      newText = 'Not read';
+    }
+    return newText;
+  }
+
+  let newRead = convertRead(read);
+
+  cardIsRead.textContent = newRead;
+  cardBottom.appendChild(cardIsRead);
+  let cardToggle = document.createElement('div');
+
+  cardToggle.classList.add('card-toggle');
+  cardBottom.appendChild(cardToggle);
+  let cardSwitch = document.createElement('label');
+
+  cardSwitch.classList.add('switch');
+  cardToggle.appendChild(cardSwitch);
+  let cardCheckbox = document.createElement('input');
+
+  cardCheckbox.setAttribute('type', 'checkbox');
+  cardSwitch.appendChild(cardCheckbox);
+  let cardSpan = document.createElement('span');
+
+  cardSpan.classList.add('slider');
+  cardSpan.classList.add('round');
+  cardSwitch.appendChild(cardSpan);
+}
+
+Book.prototype.takeInput = function () {
+  let inputTitle = document.querySelector('#title');
+  let inputAuthor = document.querySelector('#author');
+  let inputPages = document.querySelector('#pages');
+  let inputisRead = document.querySelector('#isread');
+  const submitBtn = document.querySelector('#submitbook');
+  submitBtn.addEventListener('click', () => {
+    addBookToLibrary(
+      inputTitle.value,
+      inputAuthor.value,
+      inputPages.value,
+      inputisRead.checked
+    );
+    updateLibrary(
+      inputTitle.value,
+      inputAuthor.value,
+      inputPages.value,
+      inputisRead.checked
+    );
+    modal.setAttribute('style', 'display:none');
+  });
+};
+
+let book1 = new Book('Animal Farm', 'George Orwell', '130', 'true');
+let book2 = new Book('The Shogun', 'James Clavell', '430', 'true');
+
+let myLibrary = [book1, book2];
+
+Book.prototype.takeInput();
+displayBooks();
