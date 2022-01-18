@@ -9,8 +9,9 @@
 //  1. Does your program have a user interface?
 //  What will it look like? What functionality will the interface have? Sketch this out on paper.
 
+myLibrary = [];
+
 const addButton = document.querySelector('.add-book-symbol');
-const deleteBtn = document.querySelector('.card-delete');
 const shelf = document.querySelector('.books-area');
 
 addButton.addEventListener('mouseover', () => {
@@ -54,15 +55,13 @@ function addBookToLibrary(title, author, pages, read) {
   myLibrary.push(newBook);
 }
 
-function displayBooks() {
-  for (const book of myLibrary) {
-    updateLibrary(book.title, book.author, book.pages, book.read);
-  }
-}
+let i = -1;
 
 function updateLibrary(title, author, pages, read) {
+  i++;
   let card = document.createElement('div');
   card.classList.add('card');
+
   shelf.appendChild(card);
   let cardTop = document.createElement('div');
 
@@ -76,6 +75,7 @@ function updateLibrary(title, author, pages, read) {
   let cardDelete = document.createElement('div');
 
   cardDelete.classList.add('card-delete');
+  cardDelete.setAttribute(`data-index`, `${i}`);
   cardDelete.textContent = 'X';
   cardTop.appendChild(cardDelete);
   let cardAuthor = document.createElement('div');
@@ -124,8 +124,15 @@ function updateLibrary(title, author, pages, read) {
   let cardSpan = document.createElement('span');
 
   cardSpan.classList.add('slider');
+
   cardSpan.classList.add('round');
   cardSwitch.appendChild(cardSpan);
+}
+
+function displayBooks() {
+  for (const book of myLibrary) {
+    updateLibrary(book.title, book.author, book.pages, book.read);
+  }
 }
 
 Book.prototype.takeInput = function () {
@@ -154,7 +161,25 @@ Book.prototype.takeInput = function () {
 let book1 = new Book('Animal Farm', 'George Orwell', '130', 'true');
 let book2 = new Book('The Shogun', 'James Clavell', '430', 'true');
 
-let myLibrary = [book1, book2];
+myLibrary.push(book1, book2);
 
 Book.prototype.takeInput();
 displayBooks();
+
+const deleteButton = document.querySelector('.card-delete');
+let container = document.querySelectorAll('.books-area div');
+
+Book.prototype.removeCard = function () {
+  window.addEventListener('click', (e) => {
+    if (e.path[0].classList.contains('card-delete')) {
+      let n = e.path[0].getAttribute('data-index');
+      console.log('Card index:', n);
+      myLibrary.splice(n, 1);
+      console.log('Remove? ', e.path[2]);
+      shelf.removeChild(e.path[2]);
+    }
+  });
+};
+
+//removeCard();
+Book.prototype.removeCard();
