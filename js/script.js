@@ -6,13 +6,11 @@
 // The card should also have a delete book button, and a toggle that allows the user to switch
 // between "read" and "not read yet" states.
 
-//  1. Does your program have a user interface?
-//  What will it look like? What functionality will the interface have? Sketch this out on paper.
-
 myLibrary = [];
 
 const addButton = document.querySelector('.add-book-symbol');
 const shelf = document.querySelector('.books-area');
+const inputSlider = document.querySelector('.switch');
 
 addButton.addEventListener('mouseover', () => {
   addButton.classList.toggle('add-over');
@@ -118,8 +116,17 @@ function updateLibrary(title, author, pages, read) {
   cardSwitch.classList.add('switch');
   cardToggle.appendChild(cardSwitch);
   let cardCheckbox = document.createElement('input');
+  cardCheckbox.setAttribute(`data-index2`, `${i}`);
 
   cardCheckbox.setAttribute('type', 'checkbox');
+  cardCheckbox.setAttribute('id', 'check');
+
+  if (read) {
+    cardCheckbox.checked = true;
+  } else {
+    cardCheckbox.checked = false;
+  }
+
   cardSwitch.appendChild(cardCheckbox);
   let cardSpan = document.createElement('span');
 
@@ -141,6 +148,7 @@ Book.prototype.takeInput = function () {
   let inputPages = document.querySelector('#pages');
   let inputisRead = document.querySelector('#isread');
   const submitBtn = document.querySelector('#submitbook');
+
   submitBtn.addEventListener('click', () => {
     addBookToLibrary(
       inputTitle.value,
@@ -174,12 +182,32 @@ Book.prototype.removeCard = function () {
     if (e.path[0].classList.contains('card-delete')) {
       let n = e.path[0].getAttribute('data-index');
       console.log('Card index:', n);
-      myLibrary.splice(n, 1);
-      console.log('Remove? ', e.path[2]);
+      myLibrary[n] = null;
+      console.log('Library: ', myLibrary);
       shelf.removeChild(e.path[2]);
+      //myLibrary[0].toggleStatus();
     }
   });
 };
 
-//removeCard();
 Book.prototype.removeCard();
+
+Book.prototype.toggleStatus = function () {
+  window.addEventListener('click', (e) => {
+    let readBool = e.path[0].checked;
+    let index = e.path[0].getAttribute('data-index2');
+    console.log(readBool);
+    if (readBool) {
+      myLibrary[index]['read'] = true;
+      e.path[3].firstChild.textContent = 'Read it';
+    } else {
+      myLibrary[index]['read'] = false;
+      e.path[3].firstChild.textContent = 'Not read';
+    }
+    console.log(index);
+    console.log(myLibrary[index]);
+    console.log(e.path[3].firstChild);
+  });
+};
+
+Book.prototype.toggleStatus();
